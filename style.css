@@ -1,0 +1,268 @@
+/* Cute, playful font */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #ffecd2 100%);
+  font-family: 'Nunito', sans-serif;
+  overflow: hidden;
+}
+
+/* Floating hearts in background */
+.hearts-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hearts-bg span {
+  position: absolute;
+  display: inline-block;
+  font-size: 1.5rem;
+  opacity: 0.4;
+  animation: float 6s ease-in-out infinite;
+}
+
+.hearts-bg span:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 5s; }
+.hearts-bg span:nth-child(2) { left: 20%; animation-delay: 1s; animation-duration: 7s; }
+.hearts-bg span:nth-child(3) { left: 30%; animation-delay: 2s; animation-duration: 4s; }
+.hearts-bg span:nth-child(4) { left: 40%; animation-delay: 0.5s; animation-duration: 6s; }
+.hearts-bg span:nth-child(5) { left: 50%; animation-delay: 1.5s; animation-duration: 5s; }
+.hearts-bg span:nth-child(6) { left: 60%; animation-delay: 2.5s; animation-duration: 8s; }
+.hearts-bg span:nth-child(7) { left: 70%; animation-delay: 0.8s; animation-duration: 5s; }
+.hearts-bg span:nth-child(8) { left: 80%; animation-delay: 1.2s; animation-duration: 6s; }
+.hearts-bg span:nth-child(9) { left: 90%; animation-delay: 2s; animation-duration: 7s; }
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Card container and card */
+.card-container {
+  position: relative;
+  z-index: 1;
+  padding: 1rem;
+}
+
+.card {
+  background: white;
+  border-radius: 24px;
+  padding: 3rem;
+  max-width: 420px;
+  box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card h1 {
+  font-size: 1.75rem;
+  color: #e91e63;
+  margin-bottom: 1rem;
+  font-weight: 800;
+}
+
+.card p {
+  color: #555;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-yes:hover {
+  transform: scale(1.05);
+}
+
+.btn-no:hover {
+  transform: none; /* No button avoids cursor - no hover scale */
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, #e91e63, #f06292);
+  color: white;
+}
+
+.btn-no {
+  background: #e0e0e0;
+  color: #555;
+  position: fixed;
+  z-index: 10;
+}
+
+.btn-spacer {
+  width: 88px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.invalid-choice {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: #ffcdd2;
+  color: #c62828;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Dancing polar bears (shown after Yes click) */
+.dancing-polar-bears {
+  position: relative;
+  height: 80px;
+  margin: 1rem 0;
+}
+
+.dancing-bear {
+  position: absolute;
+  font-size: 2.5rem;
+  bottom: 0;
+  animation: dance 0.6s ease-in-out infinite;
+}
+
+@keyframes dance {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  25% { transform: translateY(-12px) rotate(5deg); }
+  50% { transform: translateY(0) rotate(-5deg); }
+  75% { transform: translateY(-8px) rotate(5deg); }
+}
+
+/* Celebration hearts (shown after Yes click) */
+.celebration-hearts {
+  position: relative;
+  height: 120px;
+  margin-top: 1rem;
+}
+
+.celebration-hearts span {
+  position: absolute;
+  font-size: 2rem;
+  left: 50%;
+  top: 50%;
+  animation: burst 1.5s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes burst {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Heart fireworks on sides (when Yes is clicked) */
+.heart-fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.firework-burst {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 1px;
+}
+
+.firework-left {
+  left: 5%;
+}
+
+.firework-right {
+  right: 5%;
+  left: auto;
+}
+
+.firework-heart {
+  position: absolute;
+  font-size: 1.5rem;
+  left: 0;
+  top: 0;
+  animation: firework-burst 2s ease-out forwards;
+  opacity: 0;
+}
+
+.firework-right .firework-heart {
+  left: auto;
+  right: 0;
+}
+
+@keyframes firework-burst {
+  0% {
+    transform: translate(0, 0) scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--fx), var(--fy)) scale(1);
+    opacity: 0;
+  }
+}
